@@ -15,12 +15,32 @@ pygame.display.set_icon(icon)
 playerImg = pygame.image.load('space-invaders.png')
 playerX = 370
 playerY = 480
-
 playerX_change = 0
-playerY_change = 0
+
+# Enemy 1
+enemy1Img = pygame.image.load('enemy1.png')
+enemy1X = 50
+enemy1Y = 50
+enemy1X_change = 0
+enemy1Y_change = 0
+
+# Enemy 2
+enemy2Img = pygame.image.load('enemy2.png')
+enemy2X = 400
+enemy2Y = 50
+enemy2X_change = 0
+enemy2Y_change = 0
+
+
 
 def player(x, y):
     screen.blit(playerImg,(playerX, playerY))
+
+def enemy1(x, y):
+    screen.blit(enemy1Img,(enemy1X, enemy1Y))
+
+def enemy2(x, y):
+    screen.blit(enemy2Img,(enemy2X, enemy2Y))
 
 # Game Loop
 running = True
@@ -44,7 +64,16 @@ while running:
 
     playerX += playerX_change
 
+    if playerX <=0:
+        playerX = 0
+    elif playerX >= 775:
+        playerX = 775
+
     player(playerX, playerY)
+    
+    enemy1(enemy1X, enemy1Y)
+    enemy2(enemy2X, enemy2Y)
+
     pygame.display.update()
 
 
