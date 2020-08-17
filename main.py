@@ -25,12 +25,24 @@ def player(x, y):
 # Game Loop
 running = True
 while running:
+    # RGB - Red, Green, Blue
+    screen.fill((33, 33, 33))
+
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running=False
+        # If keystroke is pressed, check if right or left
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_LEFT:
+                playerX_change = -0.1
+            if event.key == pygame.K_RIGHT:
+                playerX_change = 0.1
 
-    # RGB - Red, Green, Blue
-    screen.fill((0, 128, 128))
+        if event.type == pygame.KEYUP:
+            if event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT:
+                playerX_change = 0
+
+    playerX += playerX_change
 
     player(playerX, playerY)
     pygame.display.update()
